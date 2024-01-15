@@ -24,4 +24,6 @@
 
 - name: Update node with NPM
   become: true
-  shell: sudo npm install -g --force node@latest
+  shell: |
+    sudo npm cache clean --force 
+    sudo npm install -g --force node@latest
