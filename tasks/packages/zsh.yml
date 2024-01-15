@@ -24,10 +24,10 @@
     shell: /bin/zsh
 
 - name: Symlink oh-my-zsh configuration and themes
-  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .oh-my-zsh"
+  shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .oh-my-zsh"
 
 - name: Symlink zsh configuration
-  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .zshrc"
+  shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .zshrc"
 
 - name: Symlink zsh aliases
-  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .zsh_aliases"
+  shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .zsh_aliases"

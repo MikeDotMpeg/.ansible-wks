@@ -5,7 +5,7 @@
       recursive: yes
       update: yes
       accept_hostkey: yes
-      version: main
+      version: master
 
 - name: Cleanup broken symlinks
   shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-cleanup ~/"

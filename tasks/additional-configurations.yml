@@ -1,26 +1,51 @@
+
+- name: Clone personal repository
+  git:
+    repo: git@github.com:MikeDotMpeg/personal.git
+    dest: "{{ lookup('env', 'HOME') }}/personal"
+    clone: yes
+    update: yes
+  ignore_errors: true
+
 - name: Validating if should configure personal
   stat:
-    path: "~/.dotfiles/personal/personal.yml"
+    path: "~/personal/personal.yml"
   register: personal_file_status
-  
+
+- name: Clone work repository
+  git:
+    repo: git@github.com:MikeDotMpeg/work.git
+    dest: "{{ lookup('env', 'HOME') }}/work"
+    clone: yes
+    update: yes
+  ignore_errors: true
+
 - name: Validating if should configure work
   stat:
-    path: "~/.dotfiles/work/work.yml"
+    path: "~/work/work.yml"
   register: work_file_status
+
+- name: Clone work repository
+  git:
+    repo: git@github.com:MikeDotMpeg/shared.git
+    dest: "{{ lookup('env', 'HOME') }}/shared"
+    clone: yes
+    update: yes
+  ignore_errors: true
 
 - name: Validating if should configure shared
   stat:
-    path: "~/.dotfiles/shared/shared.yml"
+    path: "~/shared/shared.yml"
   register: shared_file_status
 
 - name: Run shared task
-  include_tasks: ~/.dotfiles/shared/shared.yml
+  include_tasks: ~/shared/shared.yml
   when: shared_file_status.stat.exists
   
 - name: Run personal task
-  include_tasks: ~/.dotfiles/personal/personal.yml
+  include_tasks: ~/personal/personal.yml
   when: personal_file_status.stat.exists
   
 - name: Run work task
-  include_tasks: ~/.dotfiles/work/work.yml
+  include_tasks: ~/work/work.yml
   when: work_file_status.stat.exists

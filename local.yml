@@ -25,7 +25,7 @@
       file:
         path: "{{ lookup('env', 'HOME') }}/.ssh_configured/.id_rsa"
         state: touch
-      when: not file_status.stat.
+      when: not file_status.stat.exists
 
     - name: Checking for additional configurations
       import_tasks: tasks/additional-configurations.yml

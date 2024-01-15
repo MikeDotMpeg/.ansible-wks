@@ -35,4 +35,4 @@
   shell: "cd {{ lookup('env', 'HOME') }}/src/nvim && make install"
   
 - name: Symlink neovim configurations
-  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .config/nvim"
+  shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .config/nvim"

@@ -4,10 +4,10 @@
     name: "i3"
 
 - name: Symlink .config/i3/config
-  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .config/i3/config"
+  shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .config/i3/config"
 
 - name: Symlink .profile for dark mode
-  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .profile"
+  shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .profile"
 
 # - name: Load gnome terminal settings
 #   shell: "dconf load /org/gnome/terminal/legacy/profiles:/ < ~/.dotfiles/.gnome-terminal-profiles.dconf"
