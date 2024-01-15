@@ -1,0 +1,26 @@
+- name: Validating if should configure personal
+  stat:
+    path: "~/.dotfiles/personal/personal.yml"
+  register: personal_file_status
+  
+- name: Validating if should configure work
+  stat:
+    path: "~/.dotfiles/work/work.yml"
+  register: work_file_status
+
+- name: Validating if should configure shared
+  stat:
+    path: "~/.dotfiles/shared/shared.yml"
+  register: shared_file_status
+
+- name: Run shared task
+  include_tasks: ~/.dotfiles/shared/shared.yml
+  when: shared_file_status.stat.exists
+  
+- name: Run personal task
+  include_tasks: ~/.dotfiles/personal/personal.yml
+  when: personal_file_status.stat.exists
+  
+- name: Run work task
+  include_tasks: ~/.dotfiles/work/work.yml
+  when: work_file_status.stat.exists

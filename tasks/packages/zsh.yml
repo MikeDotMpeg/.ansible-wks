@@ -1,0 +1,33 @@
+- name: Install package "zsh"
+  become: true
+  apt:
+    name: "zsh"
+
+- name: Check if ~/.oh-my-zsh exists
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+  register: oh_my_zsh_stats
+
+- name: Install oh-my-zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer && rm ~/.oh-my-installer -rf
+  when: oh_my_zsh_stats.stat.exists == False
+
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-autosuggestions"
+
+- name: Change user shell to zsh 
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh
+
+- name: Symlink oh-my-zsh configuration and themes
+  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .oh-my-zsh"
+
+- name: Symlink zsh configuration
+  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .zshrc"
+
+- name: Symlink zsh aliases
+  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .zsh_aliases"

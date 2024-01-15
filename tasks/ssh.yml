@@ -1,0 +1,39 @@
+- name: Ensure "{{ lookup('env', 'HOME') }}/.ssh" exists
+  file: 
+    path: "{{ lookup('env', 'HOME') }}/.ssh"
+    state: directory
+
+- name: Generate SSH RSA 4096 key "'{{ssh_key_filename}}'"
+  openssh_keypair:
+    path: "{{home_directory}}/.ssh/{{ssh_key_filename}}"
+    type: rsa
+    size: 4096
+    state: present
+    force: no
+
+- name: Evaluating the authentication agent & adding the key...
+  shell: |
+    eval "$(ssh-agent)"
+    ssh-add ~/.ssh/{{ssh_key_filename}} 
+
+- name: Ensure "{{ lookup('env', 'HOME') }}/.ssh_configured" exists
+  file: 
+    path: "{{ lookup('env', 'HOME') }}/.ssh_configured"
+    state: directory
+
+- name: Validating if key has been configured
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.ssh_configured/.{{ssh_key_filename}}"
+  register: file_status
+
+- debug:
+    var: file_content
+  vars:
+    file_content: "{{ lookup('file', '~/.ssh/{{ssh_key_filename}}.pub') }}"
+  when: file_status
+
+- name: Prompt for configuration confirmation for "{{ssh_key_filename}}"
+  pause:
+    prompt: "\n***Key has not been marked as configured****.\n\nPress enter once it's been configured to continue and it will mark after success."
+  register: confirm_set
+  when: not file_status.stat.exists

@@ -1,0 +1,38 @@
+- name: Remove neovim
+  become: true
+  shell: rm -rf ~/src/nvim
+  
+- name: Clone nvim repository
+  git:
+    repo: https://github.com/neovim/neovim
+    dest: "{{ ansible_env.HOME }}/src/nvim"
+    clone: true
+    version: "v0.9.5"
+
+- name: Install nvim build dependencies
+  become: true
+  apt:
+    name:
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - pkg-config
+      - unzip
+      - curl
+    state: present
+
+- name: Build neovim
+  become: true
+  shell: "cd {{ lookup('env', 'HOME') }}/src/nvim && make -j 20"
+
+- name: Install neovim
+  become: true
+  shell: "cd {{ lookup('env', 'HOME') }}/src/nvim && make install"
+  
+- name: Symlink neovim configurations
+  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .config/nvim"

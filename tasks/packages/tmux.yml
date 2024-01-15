@@ -1,0 +1,10 @@
+- name: Install package "tmux"
+  become: true
+  apt:
+    name: "tmux"
+
+- name: Symlink .tmux.conf
+  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .tmux.conf"
+
+- name: Symlink tmux-sessionizer and tmux-nster
+  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .local/bin/tmux"

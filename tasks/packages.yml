@@ -1,0 +1,49 @@
+- name: Install package "firefox"
+  become: true
+  apt:
+    name: "firefox"
+
+- name: Install package "ripgrep"
+  become: true
+  apt:
+    name: "ripgrep"
+
+- name: Install package "zip"
+  become: true
+  apt:
+    name: "zip"
+
+- name: Install package "npm"
+  become: true
+  apt:
+    name: "npm"
+
+- name: Install package "fzf"
+  become: true
+  apt:
+    name: "fzf"
+
+- name: Install package "flameshot"
+  become: true
+  apt:
+    name: "flameshot"
+
+- name: Install package "git"
+  become: true
+  apt:
+    name: "git"
+
+- name: Install and configure nodejs 20
+  import_tasks: tasks/packages/node.yml
+    
+- name: Install and configure zsh
+  import_tasks: tasks/packages/zsh.yml
+
+- name: Install and configure tmux
+  import_tasks: tasks/packages/tmux.yml
+
+- name: Install and configure i3
+  import_tasks: tasks/packages/i3.yml
+
+- name: Install and configure nvim
+  import_tasks: tasks/packages/nvim.yml
