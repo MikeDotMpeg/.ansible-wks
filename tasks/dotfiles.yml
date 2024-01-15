@@ -1,11 +1,11 @@
 - name: Cloning .dotfiles
-    ansible.builtin.git:
-      repo: 'git@github.com:MikeDotMpeg/.core.git'
-      dest: "{{ lookup('env', 'HOME') }}/.core"
-      recursive: yes
-      update: yes
-      accept_hostkey: yes
-      version: master
+  ansible.builtin.git:
+    repo: 'git@github.com:MikeDotMpeg/.core.git'
+    dest: "{{ lookup('env', 'HOME') }}/.core"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
 
 - name: Cleanup broken symlinks
   shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-cleanup ~/"
