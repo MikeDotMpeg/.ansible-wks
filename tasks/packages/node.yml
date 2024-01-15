@@ -25,5 +25,5 @@
 - name: Update node with NPM
   become: true
   shell: |
-    sudo npm cache clean --force 
-    sudo npm install -g --force node@latest
+    curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+    sudo apt-get install -y nodejs
