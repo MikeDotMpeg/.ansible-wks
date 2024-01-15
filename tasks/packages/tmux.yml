@@ -4,7 +4,7 @@
     name: "tmux"
 
 - name: Symlink .tmux.conf
-  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .tmux.conf"
+  shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .tmux.conf"
 
 - name: Symlink tmux-sessionizer and tmux-nster
-  shell: "bash {{ lookup('env', 'HOME') }}/.dotfiles/scripts/symlink-create .local/bin/tmux"
+  shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .local/bin/tmux"
