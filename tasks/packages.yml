@@ -42,6 +42,9 @@
 - name: Install and configure tmux
   import_tasks: tasks/packages/tmux.yml
 
+- name: Install and configure pwsh
+  import_tasks: tasks/packages/pwsh.yml
+
 - name: Install and configure i3
   import_tasks: tasks/packages/i3.yml
 
