@@ -1,26 +1,26 @@
-- name: remove previous node data
-  become: true
-  shell: |
-    sudo rm -rf /usr/local/bin/npm /usr/local/share/man/man1/node*~/.npm
-    sudo rm -rf /usr/local/lib/node*
-    sudo rm -rf /usr/local/bin/node*
-    sudo rm -rf /usr/local/include/node*
+# - name: remove previous node data
+#   become: true
+#   shell: |
+#     sudo rm -rf /usr/local/bin/npm /usr/local/share/man/man1/node*~/.npm
+#     sudo rm -rf /usr/local/lib/node*
+#     sudo rm -rf /usr/local/bin/node*
+#     sudo rm -rf /usr/local/include/node*
 
-- name: Remove dependencies that are no longer required and purge their configuration files
-  become: true
-  ansible.builtin.apt:
-    autoremove: yes
-    purge: true
+# - name: Remove dependencies that are no longer required and purge their configuration files
+#   become: true
+#   ansible.builtin.apt:
+#     autoremove: yes
+#     purge: true
 
-- name: Install package "nodejs"
-  become: true
-  apt:
-    name: "nodejs"
+# - name: Install package "nodejs"
+#   become: true
+#   apt:
+#     name: "nodejs"
 
-- name: Install package "npm"
-  become: true
-  apt:
-    name: "npm"
+# - name: Install package "npm"
+#   become: true
+#   apt:
+#     name: "npm"
 
 - name: Update node with NPM
   become: true
