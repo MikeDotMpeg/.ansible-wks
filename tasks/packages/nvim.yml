@@ -1,7 +1,16 @@
 - name: Remove neovim
   become: true
   shell: rm -rf ~/src/nvim
-  
+
+- name: Validating if should configure personal
+  stat:
+    path: "~/.src/nvim/README.md"
+  register: nvim_readme_file_status
+
+- name: Update nvim git tags
+  shell: "cd ~/.src/nvim && git fetch --tags --force && cd ~/"
+  when: nvim_readme_file_status.stat.exists
+
 - name: Clone nvim repository
   git:
     repo: https://github.com/neovim/neovim
