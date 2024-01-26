@@ -1,7 +1,16 @@
-- name: Cloning .dotfiles
+- name: Cloning dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:MikeDotMpeg/.core.git'
     dest: "{{ lookup('env', 'HOME') }}/.core"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+
+- name: Cloning .ansible-workstation
+  ansible.builtin.git:
+    repo: 'git@github.com:MikeDotMpeg/.ansible-workstation.git'
+    dest: "{{ lookup('env', 'HOME') }}/.ansible-workstation"
     recursive: yes
     update: yes
     accept_hostkey: yes
