@@ -16,5 +16,8 @@
     accept_hostkey: yes
     version: master
 
+- name: Fix line endings
+  shell: "dos2unix $(find ~/.core -type f)"
+  
 - name: Cleanup broken symlinks
   shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-cleanup ~/"
