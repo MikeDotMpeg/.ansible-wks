@@ -1,7 +1,7 @@
 
 - name: Clone personal repository
   git:
-    repo: git@github.com:MikeDotMpeg/personal.git
+    repo: git@github.com:mikeelindsay/personal.git
     dest: "{{ lookup('env', 'HOME') }}/personal"
     clone: yes
     update: yes
@@ -14,7 +14,7 @@
 
 - name: Clone work repository
   git:
-    repo: git@github.com:MikeDotMpeg/work.git
+    repo: git@github.com:mikeelindsay/work.git
     dest: "{{ lookup('env', 'HOME') }}/work"
     clone: yes
     update: yes
@@ -27,7 +27,7 @@
 
 - name: Clone work repository
   git:
-    repo: git@github.com:MikeDotMpeg/shared.git
+    repo: git@github.com:mikeelindsay/shared.git
     dest: "{{ lookup('env', 'HOME') }}/shared"
     clone: yes
     update: yes
