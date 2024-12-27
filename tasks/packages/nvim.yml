@@ -16,7 +16,7 @@
     repo: https://github.com/neovim/neovim
     dest: "{{ ansible_env.HOME }}/.src/nvim"
     clone: true
-    version: "v0.9.5"
+    version: "v0.10.3"
 
 - name: Install nvim build dependencies
   become: true
