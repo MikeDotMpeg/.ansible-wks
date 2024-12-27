@@ -37,11 +37,6 @@
   become: true
   apt:
     name: "dotnet-sdk-8.0"
-
-- name: Install package "dotnet-sdk-6.0"
-  become: true
-  apt:
-    name: "dotnet-sdk-6.0"
     
 - name: Install and configure nodejs 20
   import_tasks: tasks/packages/node.yml
