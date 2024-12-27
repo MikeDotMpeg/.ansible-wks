@@ -15,6 +15,11 @@
     update: yes
     accept_hostkey: yes
     version: master
+    
+- name: Install package "dos2unix"
+  become: true
+  apt:
+    name: "dos2unix"
 
 - name: Fix line endings
   shell: "dos2unix $(find ~/.core -type f)"
