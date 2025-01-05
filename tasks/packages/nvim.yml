@@ -46,5 +46,14 @@
 - name: Symlink neovim configurations
   shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .config/nvim"
 
+- name: Ensure the nvim directory exists
+  ansible.builtin.file:
+    path: /home/mike/.local/share/nvim
+    state: directory
+    mode: '0755'
+
 - name: Unzip languageserver into appropriate directory
-  shell: "unzip -o {{ lookup('env', 'HOME') }}/.ansible-workstation/files/languageserver -d {{ lookup('env', 'HOME') }}/.local/share/nvim"
+  unarchive:
+    src: /home/mike/.ansible-workstation/files/languageserver
+    dest: /home/mike/.local/share/nvim
+    remote_src: yes
