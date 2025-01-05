@@ -42,6 +42,9 @@
 - name: Install neovim
   become: true
   shell: "cd {{ lookup('env', 'HOME') }}/.src/nvim && make install"
-  
+
 - name: Symlink neovim configurations
   shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-create .config/nvim"
+
+- name: Unzip languageserver into appropriate directory
+  shell: "unzip -o {{ lookup('env', 'HOME') }}/.ansible-workstation/files/languageserver -d {{ lookup('env', 'HOME') }}/.local/share/nvim"
