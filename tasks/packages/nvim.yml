@@ -48,12 +48,12 @@
 
 - name: Ensure the nvim directory exists
   ansible.builtin.file:
-    path: /home/mike/.local/share/nvim
+    path: ~/.local/share/nvim
     state: directory
     mode: '0755'
 
 - name: Unzip languageserver into appropriate directory
   unarchive:
-    src: /home/mike/.ansible-workstation/files/languageserver
-    dest: /home/mike/.local/share/nvim
+    src: ~/.ansible-workstation/files/languageserver
+    dest: ~.local/share/nvim
     remote_src: yes
