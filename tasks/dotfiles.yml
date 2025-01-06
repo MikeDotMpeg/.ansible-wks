@@ -23,6 +23,10 @@
 
 - name: Fix line endings
   shell: "dos2unix $(find ~/.core -type f)"
+
+- name: Set git config for windows line endings
+  shell: "git config --global core.autocrlf true"
   
 - name: Cleanup broken symlinks
   shell: "bash {{ lookup('env', 'HOME') }}/.core/scripts/symlink-cleanup ~/"
+
