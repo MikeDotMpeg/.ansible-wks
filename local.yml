@@ -26,6 +26,9 @@
         path: "{{ lookup('env', 'HOME') }}/.ssh_configured/.id_rsa"
         state: touch
       when: not file_status.stat.exists
-
+      
+    - name: Set git config for windows line endings
+      shell: "git config --global core.autocrlf true"
+    
     - name: Checking for additional configurations
       import_tasks: tasks/additional-configurations.yml
