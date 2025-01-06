@@ -55,5 +55,5 @@
 - name: Unzip languageserver into appropriate directory
   unarchive:
     src: ~/.ansible-workstation/files/languageserver
-    dest: ~.local/share/nvim
+    dest: ~/.local/share/nvim
     remote_src: yes
