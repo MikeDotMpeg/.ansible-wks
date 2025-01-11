@@ -9,27 +9,26 @@
       state: present
     
   tasks:
- #   - name: Generate Machine SSH Key if not exists
- #     vars:
- #       home_directory: "{{ lookup('env', 'HOME') }}" 
- #       ssh_key_filename: "id_rsa"
- #     import_tasks: tasks/ssh.yml
+    - name: Generate Machine SSH Key if not exists
+      vars:
+        home_directory: "{{ lookup('env', 'HOME') }}" 
+        ssh_key_filename: "id_rsa"
+      import_tasks: tasks/ssh.yml
 
-#    - name: Dotfiles
-#      import_tasks: tasks/dotfiles.yml
+    - name: Dotfiles
+      import_tasks: tasks/dotfiles.yml
 
     - name: Packages
-      import_tasks: tasks/packages/nvim.yml
-      #import_tasks: tasks/packages.yml
+      import_tasks: tasks/packages.yml
 
- #   - name: Setting key confirmation for id_rsa
- #     file:
- #       path: "{{ lookup('env', 'HOME') }}/.ssh_configured/.id_rsa"
- #       state: touch
- #     when: not file_status.stat.exists
+    - name: Setting key confirmation for id_rsa
+      file:
+        path: "{{ lookup('env', 'HOME') }}/.ssh_configured/.id_rsa"
+        state: touch
+      when: not file_status.stat.exists
       
-#    - name: Set git config for windows line endings
-#      shell: "git config --global core.autocrlf true"
+    - name: Set git config for windows line endings
+      shell: "git config --global core.autocrlf true"
     
-#    - name: Checking for additional configurations
-#      import_tasks: tasks/additional-configurations.yml
+    - name: Checking for additional configurations
+      import_tasks: tasks/additional-configurations.yml
